@@ -1,12 +1,10 @@
-ass User(BaseModel):
-    """Represent User.
+#!/usr/bin/python3
+"""user class that inherits from basemodel"""
+from models.base_model import BaseModel
 
-    Attributes:
-        email (str): email of the user.
-        password (str): password of the user.
-        first_name (str): first name of the user.
-        last_name (str): last name of the user.
-    """
+
+class User(BaseModel):
+    """User class attributes"""
 
     email = ""
     password = ""

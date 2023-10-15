@@ -37,11 +37,11 @@ class HBNBCommand(cmd.Cmd):
         if not class_name:
             print("** class name missing **")
             return
-        if class_name not in classes:
+        if class_name not in self.classes:
             print("** class doesn't exist **")
             return
         else:
-            cls = classes[class_name]
+            cls = self.classes[class_name]
             obj = cls()
             obj.save()
             print(obj.id)
@@ -53,7 +53,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         args = arguments.split()
-        if args[0] not in classes:
+        if args[0] not in self.classes:
             print("** class doesn't exist **")
             return
         if len(args) != 2:
@@ -73,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         args = arguments.split()
-        if args[0] not in classes:
+        if args[0] not in self.classes:
             print("** class doesn't exist **")
             return
         if len(args) != 2:
@@ -98,7 +98,7 @@ class HBNBCommand(cmd.Cmd):
                 list_of_str.append(str(storage.all()[key].__str__()))
         else:
             for key in storage.all():
-                if isinstance(storage.all()[key], classes[args[0]]):
+                if isinstance(storage.all()[key], self.classes[args[0]]):
                     list_of_str.append(str(storage.all()[key].__str__()))
             print(list_of_str)
 
@@ -108,7 +108,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        if args[0] not in classes:
+        if args[0] not in self.classes:
             print("** class doesn't exist **")
             return
         if len(args) < 2:

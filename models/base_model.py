@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-"""defines BaseModel class."""
+"""BaseModel class."""
 import models
 from uuid import uuid4
 from datetime import datetime
+
 
 class BaseModel:
     """defines BaseModel for the projct """
