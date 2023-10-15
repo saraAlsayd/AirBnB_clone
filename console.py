@@ -17,7 +17,8 @@ class HBNBCommand(cmd.Cmd):
     file = None
 
     classes = {'BaseModel': BaseModel, 'User': User,
-            'State': State, 'City': City, 'Amenity': Amenity, 'Place': Place, 'Review': Review}
+               'State': State, 'City': City, 'Amenity': Amenity,
+               'Place': Place, 'Review': Review}
 
     def do_quit(self, arg):
         """Quit command to exit the program\n"""
@@ -128,6 +129,7 @@ class HBNBCommand(cmd.Cmd):
         attribute_type = type(getattr(instance, args[2]))
         setattr(instance, args[2], attribute_type(args[3]))
         storage.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
