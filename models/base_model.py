@@ -7,18 +7,18 @@ from datetime import datetime
 
 class BaseModel:
     """defines BaseModel for the projct """
-    def _int_(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         """function define *args **kwargs"""
         tform = "%Y-%m-%dT%H:%M:%S.%f"
-        self.id = (str.uuid4())
+        self.id = str(uuid4())
         self.created_at = datetime.today()
         self.updated_at = datetime.today()
         if len(kwargs) != 0:
             for k, j in kwargs.items():
                 if k == "updated_at" or k == "created_at":
-                    self._dict_[k] = datetime.strptime(j, tform)
+                    self.__dict__[k] = datetime.strptime(j, tform)
                 else:
-                    self._dict_[k] = j
+                    self.__dict__[k] = j
         else:
             models.storage.new(self)
 
@@ -39,7 +39,7 @@ class BaseModel:
         rdict["__class__"] = self.__class__.__name__
         return rdict
 
-    def _str_(self):
+    def __str__(self):
         """print the representaion of BaseModel"""
         clname = self.__class__.__name__
         return "[{}], ({}), {}".format(clname, self.id, self.__dict__)

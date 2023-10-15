@@ -50,10 +50,10 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, arguments):
         """Prints the string representation of an instance
             based on the class name and id\n"""
+        args = arguments.split()
         if not args:
             print("** class name missing **")
             return
-        args = arguments.split()
         if args[0] not in self.classes:
             print("** class doesn't exist **")
             return
@@ -98,6 +98,9 @@ class HBNBCommand(cmd.Cmd):
             for key in storage.all():
                 list_of_str.append(str(storage.all()[key].__str__()))
         else:
+            if args[0] not in self.classes:
+                print("** class doesn't exist **")
+                return
             for key in storage.all():
                 if isinstance(storage.all()[key], self.classes[args[0]]):
                     list_of_str.append(str(storage.all()[key].__str__()))
@@ -126,8 +129,11 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
         instance = storage.all()[obj]
-        attribute_type = type(getattr(instance, args[2]))
-        setattr(instance, args[2], attribute_type(args[3]))
+        if hasattr(instance, args[2]):
+            attribute_type = type(getattr(instance, args[2]))
+            setattr(instance, args[2], attribute_type(args[3]))
+        else:
+             setattr(instance, args[2], args[3])
         storage.save()
 
 
