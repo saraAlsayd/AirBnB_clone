@@ -166,7 +166,6 @@ class HBNBCommand(cmd.Cmd):
                 return
             obj = args[0] + "." + arguments[1].split('"')[1]
             if obj not in storage.all():
-                print(obj)
                 print("** no instance found **")
                 return
             print(storage.all()[obj].__str__())
