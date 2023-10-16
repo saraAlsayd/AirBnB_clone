@@ -147,6 +147,15 @@ class HBNBCommand(cmd.Cmd):
                 if isinstance(storage.all()[key], self.classes[args[0]]):
                     instance_list.append(str(storage.all()[key].__str__()))
             print(instance_list)
+        if args[1] == "count()":
+            count = 0
+            if args[0] not in self.classes:
+                print("** class doesn't exist **")
+                return
+            for key in storage.all():
+                if isinstance(storage.all()[key], self.classes[args[0]]):
+                    count += 1
+            print(count)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
