@@ -104,7 +104,7 @@ class HBNBCommand(cmd.Cmd):
             for key in storage.all():
                 if isinstance(storage.all()[key], self.classes[args[0]]):
                     list_of_str.append(str(storage.all()[key].__str__()))
-            print(list_of_str)
+        print(list_of_str)
 
     def do_update(self, arguments):
         """ Updates an instance based on the class name and id\n"""
@@ -116,7 +116,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
         if len(args) < 2:
-            print("** instance id missing ** ")
+            print("** instance id missing **")
             return
         obj = args[0] + "." + args[1]
         if obj not in storage.all():
@@ -133,7 +133,7 @@ class HBNBCommand(cmd.Cmd):
             attribute_type = type(getattr(instance, args[2]))
             setattr(instance, args[2], attribute_type(args[3]))
         else:
-             setattr(instance, args[2], args[3])
+            setattr(instance, args[2], args[3])
         storage.save()
 
 
