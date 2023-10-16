@@ -136,6 +136,50 @@ class HBNBCommand(cmd.Cmd):
             setattr(instance, args[2], args[3])
         storage.save()
 
-
+    def default(self, command):
+        args = command.split('.')
+        instance_list = []
+        if args[1] == "all()":
+            if args[0] not in self.classes:
+                print("** class doesn't exist **")
+                return
+            for key in storage.all():
+                if isinstance(storage.all()[key], self.classes[args[0]]):
+                    instance_list.append(str(storage.all()[key].__str__()))
+            print(instance_list)
+        if args[1] == "count()":
+            count = 0
+            if args[0] not in self.classes:
+                print("** class doesn't exist **")
+                return
+            for key in storage.all():
+                if isinstance(storage.all()[key], self.classes[args[0]]):
+                    count += 1
+            print(count)
+        arguments = args[1].split('(')
+        if arguments[0] == "show":
+            if args[0] not in self.classes:
+                print("** class doesn't exist **")
+                return
+            if arguments[1] == ")":
+                print("** instance id missing **")
+                return
+            obj = args[0] + "." + arguments[1].split('"')[1]
+            if obj not in storage.all():
+                print("** no instance found **")
+                return
+            print(storage.all()[obj].__str__())
+        if arguments[0] == "destroy":
+            if args[0] not in self.classes:
+                print("** class doesn't exist **")
+                return
+            if arguments[1] == ")":
+                print("** instance id missing **")
+            obj = args[0] + "." + arguments[1].split('"')[1]
+            if obj not in storage.all():
+                print("** no instance found **")
+                return
+            del storage.all()[obj]
+            storage.save()
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
