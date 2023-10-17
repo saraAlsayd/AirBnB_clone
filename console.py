@@ -182,7 +182,6 @@ class HBNBCommand(cmd.Cmd):
                 print("* no instance found *")
             del storage.all()[obj]
             storage.save()
-            return
 
 
 if __name__ == '__main__':
