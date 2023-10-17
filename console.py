@@ -135,8 +135,9 @@ class HBNBCommand(cmd.Cmd):
         else:
             setattr(instance, args[2], args[3])
         storage.save()
-        
+
     def default(self, command):
+        """advances tasks method"""
         args = command.split('.')
         instance_list = []
         if args[1] == "all()":
@@ -186,6 +187,7 @@ class HBNBCommand(cmd.Cmd):
             del storage.all()[obj]
             storage.save()
             return
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
