@@ -170,7 +170,7 @@ class HBNBCommand(cmd.Cmd):
             if obj not in storage.all():
                 print("* no instance found *")
                 return
-            print(storage.all()[obj]._str_())
+            print(storage.all()[obj].__str__())
             return
         if arguments[0] == "destroy":
             if args[0] not in self.classes:
