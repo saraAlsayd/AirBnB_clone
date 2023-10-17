@@ -148,7 +148,6 @@ class HBNBCommand(cmd.Cmd):
                 if isinstance(storage.all()[key], self.classes[args[0]]):
                     instance_list.append(str(storage.all()[key].__str__()))
             print(instance_list)
-            return
         if args[1] == "count()":
             count = 0
             if args[0] not in self.classes:
@@ -158,7 +157,6 @@ class HBNBCommand(cmd.Cmd):
                 if isinstance(storage.all()[key], self.classes[args[0]]):
                     count += 1
             print(count)
-            return
         arguments = args[1].split('(')
         if arguments[0] == "show":
             if args[0] not in self.classes:
@@ -172,7 +170,6 @@ class HBNBCommand(cmd.Cmd):
                 print("* no instance found *")
                 return
             print(storage.all()[obj].__str__())
-            return
         if arguments[0] == "destroy":
             if args[0] not in self.classes:
                 print("* class doesn't exist *")
@@ -183,7 +180,6 @@ class HBNBCommand(cmd.Cmd):
             obj = args[0] + "." + arguments[1].split('"')[1]
             if obj not in storage.all():
                 print("* no instance found *")
-                return
             del storage.all()[obj]
             storage.save()
             return
