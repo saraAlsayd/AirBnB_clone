@@ -180,6 +180,7 @@ class HBNBCommand(cmd.Cmd):
             obj = args[0] + "." + arguments[1].split('"')[1]
             if obj not in storage.all():
                 print("** no instance found **")
+                return
             del storage.all()[obj]
             storage.save()
 
