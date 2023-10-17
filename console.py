@@ -137,6 +137,10 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
     def default(self, command):
+<<<<<<< HEAD
+=======
+        """advances tasks method"""
+>>>>>>> 34cd1a88a8f9842e0d46a7b3df01c0a203b3609a
         args = command.split('.')
         instance_list = []
         if args[1] == "all()":
@@ -175,11 +179,50 @@ class HBNBCommand(cmd.Cmd):
                 return
             if arguments[1] == ")":
                 print("** instance id missing **")
+<<<<<<< HEAD
+=======
+                return
+>>>>>>> 34cd1a88a8f9842e0d46a7b3df01c0a203b3609a
             obj = args[0] + "." + arguments[1].split('"')[1]
             if obj not in storage.all():
                 print("** no instance found **")
                 return
             del storage.all()[obj]
             storage.save()
+<<<<<<< HEAD
+=======
+        if arguments[0] == "update":
+            if args[0] not in self.classes:
+                print("** class doesn't exist **")
+                return
+            if len(arguments[1].split(',')) < 3:
+                print("** value missing **")
+                return
+            if len(arguments[1].split(',')) < 2:
+                print("** attribute name missing **")
+                return
+            if arguments[1] == ")":
+                print("** instance id missing **")
+                return
+            obj_id = arguments[1].split('"')[1]
+            attr_name = arguments[1].split('"')[3]
+            obj = args[0] + "." + obj_id
+            if obj not in storage.all():
+                print("** no instance found **")
+                return
+            instance = storage.all()[obj]
+            if len(arguments[1].split('"')) == 7:
+                value = arguments[1].split('"')[5]
+            else:
+                value = arguments[1].split(', ')[2].split(')')[0]
+            if hasattr(instance, attr_name):
+                attribute_type = type(getattr(instance, attr_name))
+                setattr(instance, attr_name, attribute_type(value))
+            else:
+                setattr(instance, attr_name, value)
+            storage.save()
+
+
+>>>>>>> 34cd1a88a8f9842e0d46a7b3df01c0a203b3609a
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
