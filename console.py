@@ -145,7 +145,7 @@ class HBNBCommand(cmd.Cmd):
                 return
             for key in storage.all():
                 if isinstance(storage.all()[key], self.classes[args[0]]):
-                    instance_list.append(str(storage.all()[key]._str_()))
+                    instance_list.append(str(storage.all()[key].__str__()))
             print(instance_list)
             return
         if args[1] == "count()":
