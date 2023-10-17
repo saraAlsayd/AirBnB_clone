@@ -166,7 +166,7 @@ class HBNBCommand(cmd.Cmd):
                 return
             obj = args[0] + "." + arguments[1].split('"')[1]
             if obj not in storage.all():
-                                          print("* no instance found *")
+                print("* no instance found *")
                 return
             print(storage.all()[obj]._str_())
         if arguments[0] == "destroy":
@@ -175,6 +175,7 @@ class HBNBCommand(cmd.Cmd):
                 return
             if arguments[1] == ")":
                 print("* instance id missing *")
+                return
             obj = args[0] + "." + arguments[1].split('"')[1]
             if obj not in storage.all():
                 print("* no instance found *")
